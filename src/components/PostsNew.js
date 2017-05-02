@@ -17,10 +17,15 @@ class PostsNew extends Component {
             </div>
         );
     }
-
+    onSubmit(values) {
+        console.log(values);
+    }
     render() {
+        // on user submit handleSubmit runs the reduxForm side of this form
+        // if valid we call this.onSubmit
+        const { handleSubmit } = this.props;
         return (
-            <form>
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <Field 
                     label="Title for Post"
                     name="title"
@@ -36,6 +41,8 @@ class PostsNew extends Component {
                     name="content"
                     component={this.renderField}
                 />
+                <button
+                    type="submit" className="btn btn-primary">Submit</button>
             </form>
         );
     }
