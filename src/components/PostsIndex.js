@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions';
 
-class PostIndex extends Component {
+class PostsIndex extends Component {
     componentDidMount() {
         this.props.fetchPosts();
     }
@@ -34,4 +34,4 @@ function mapStateToProps(state) {
 
 // short form of wiring up action, instead of using mapDispatchToProps we can
 // pass action creator as second connect argument and destructure with es6
-export default connect(mapStateToProps, { fetchPosts })(PostIndex);
+export default connect(mapStateToProps, { fetchPosts })(PostsIndex);
