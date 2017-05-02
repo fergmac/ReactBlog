@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, touched } from 'redux-form';
 
 class PostsNew extends Component {
     // lets Field know it is responsible for dealing with
@@ -13,7 +13,8 @@ class PostsNew extends Component {
                     type="text"
                     {...field.input}
                 />
-                {field.meta.error}
+                {/* if user has touched field then show error if not show empty string */}
+                {field.meta.touched ? field.meta.error : '' }
             </div>
         );
     }
