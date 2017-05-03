@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Field, reduxForm, touched } from 'redux-form';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createPost } from '../actions';
 
 class PostsNew extends Component {
     // lets Field know it is responsible for dealing with
@@ -24,8 +26,10 @@ class PostsNew extends Component {
             </div>
         );
     }
-    onSubmit(values) {
-        console.log(values);
+    onSubmit(values) { 
+        this.props.createPost(values, () => {
+            this.props.history.push('/');
+        });
     }
     render() {
         // on user submit handleSubmit runs the reduxForm side of this form
@@ -79,4 +83,6 @@ function validate(values) {
 export default reduxForm({
     validate,
     form: 'PostsNewForm'
-})(PostsNew);
+})(
+    connect(null, { createPost })(PostsNew)
+);
