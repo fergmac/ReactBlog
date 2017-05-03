@@ -5,16 +5,21 @@ class PostsNew extends Component {
     // lets Field know it is responsible for dealing with
     // this input field
     renderField(field) {
+        // destructuring meta and the touched and error properties off of meta
+        const { meta: { touched, error } } = field;
+        const className = `form-group ${touched && error ? 'has-danger' : ''}`;
         return (
-            <div className="form-group">
+            <div className={className}>
                 <label>{field.label}</label>
                 <input
                     className="form-control"
                     type="text"
                     {...field.input}
                 />
-                {/* if user has touched field then show error if not show empty string */}
-                {field.meta.touched ? field.meta.error : '' }
+                <div className="text-help">
+                    {/* if user has touched field then show error if not show empty string */}
+                    {touched ? error : '' }
+                </div>
             </div>
         );
     }
